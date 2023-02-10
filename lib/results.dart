@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
 class ResultPage extends StatelessWidget {
   final int score;
 
@@ -25,7 +27,7 @@ class ResultPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "It wont be a bad Idea to try again. Your only got $score out of $questions",
+              "It wont be a bad idea to try again. Your only got $score out of $questions",
               style: const TextStyle(fontSize: 25, color: Colors.yellowAccent,fontWeight: FontWeight.bold),
             ),
             const SizedBox(
@@ -34,7 +36,11 @@ class ResultPage extends StatelessWidget {
             ElevatedButton(
               child: const Text("Play Again"),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => QuizApp(),
+                  ),
+                );
               },
             ),
             const SizedBox(
