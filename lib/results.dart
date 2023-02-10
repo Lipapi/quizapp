@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +29,7 @@ class ResultPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "It wont be a bad idea to try again. Your only got $score out of $questions",
+              "Brain Smashed! Correct Answers $score out of $questions questions.",
               style: const TextStyle(fontSize: 25, color: Colors.yellowAccent,fontWeight: FontWeight.bold),
             ),
             const SizedBox(
@@ -36,11 +38,14 @@ class ResultPage extends StatelessWidget {
             ElevatedButton(
               child: const Text("Play Again"),
               onPressed: () {
+
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (context) => QuizApp(),
+
                   ),
                 );
+
               },
             ),
             const SizedBox(

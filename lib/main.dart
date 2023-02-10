@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:quizapp/results.dart';
 
@@ -124,6 +126,19 @@ class _QuizPageState extends State<QuizPage> {
     "Buenos Aires, Santiago, Rio de Janeiro"
   ];
 
+
+  void shuffleList(List list) {
+    var random = new Random();
+    for (var i = list.length - 1; i > 0; i--) {
+      var j = random.nextInt(i + 1);
+      var temp = list[i];
+      list[i] = list[j];
+      list[j] = temp;
+    }
+
+
+  }
+
   int currentIndex = 0;
   int score = 0;
   int incorrectAnswers = 0;
@@ -161,6 +176,9 @@ class _QuizPageState extends State<QuizPage> {
             ElevatedButton(
               child: Text(options[currentIndex].split(',')[0]),
               onPressed: () {
+                shuffleList(questions);
+                shuffleList(answers);
+                shuffleList(options);
                 setState(() {
                   if (options[currentIndex].split(',')[0].contains(answers[currentIndex])) {
                     score++;
@@ -189,7 +207,7 @@ class _QuizPageState extends State<QuizPage> {
                   if (!options[currentIndex].split(',')[1].contains(answers[currentIndex])) {
                     incorrectAnswers++;
                   }
-                  if (incorrectAnswers == 2) {
+                  if (incorrectAnswers == 1) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
