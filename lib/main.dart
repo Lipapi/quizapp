@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/results.dart';
-import 'dart:math';
 
 void main() {
   runApp(QuizApp());
@@ -10,6 +9,15 @@ class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        backgroundColor: Colors.blueGrey,
+        scaffoldBackgroundColor: Colors.blueGrey,
+        appBarTheme: const AppBarTheme(
+          color: Colors.blueGrey,
+        ),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       home: QuizPage(),
     );
   }
@@ -125,18 +133,29 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Quiz Game"),
+        title: const Text("Brain Smash"),
       ),
+
       body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.jpg'),
+            fit: BoxFit.cover,
+
+          ),
+        ),
         child: Column(
+
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                questions[currentIndex],
+                style: const TextStyle(fontSize: 20,color: Colors.yellowAccent,fontWeight: FontWeight.bold),
+              ),),
 
-            Text(
-              questions[currentIndex],
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
@@ -160,7 +179,7 @@ class _QuizPageState extends State<QuizPage> {
               },
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
@@ -194,7 +213,7 @@ class _QuizPageState extends State<QuizPage> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
@@ -217,7 +236,7 @@ class _QuizPageState extends State<QuizPage> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
 
@@ -227,6 +246,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
-
-
